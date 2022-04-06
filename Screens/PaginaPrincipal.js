@@ -17,7 +17,7 @@ const PaginaPrincipal = () => {
           margin:10,
           resizeMode: "cover",
           height: "45%",
-          width: 350,
+          width: "40%",
           alignSelf: "center",
           marginTop: 15,
           borderRadius: 50,
