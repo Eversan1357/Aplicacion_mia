@@ -12,28 +12,23 @@ const PaginaPrincipal = () => {
       width: "100%",
       backgroundColor: "white"
     }}>
-      <Image
+      <View
         style={{
-          margin:10,
-          resizeMode: "cover",
-          height: "45%",
-          width: "40%",
-          alignSelf: "center",
-          marginTop: 15,
-          borderRadius: 50,
-          borderColor: "#CDD1E2",
-          borderWidth: 2,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 12,
-          },
-          shadowOpacity: 0.58,
-          shadowRadius: 16.00,
-          elevation: 24,
-        }}
-        source={require("../assets/img1.jpeg")}
-      />
+          display: "flex",
+          justifyContent: "center",
+          margin: 15,
+        }}>
+        <Image
+          style={{
+            margin: 8,
+            resizeMode: "center",
+            alignSelf: "center",
+            height: 290,
+            width: 340,
+          }}
+          source={require("../assets/logomia.png")}
+        />
+      </View>
       <Text
         style={{
           alignSelf: 'center',
@@ -53,7 +48,7 @@ const PaginaPrincipal = () => {
       <TouchableOpacity
         onPress={() => navigation.navigate("inicio_session")}
         style={{
-          backgroundColor: "#FA0E0E",
+          backgroundColor: "#3296F3",
           padding: 10,
           marginTop: 80,
           width: 250,
@@ -61,14 +56,14 @@ const PaginaPrincipal = () => {
           borderRadius: 15,
           borderColor: "#CDD1E2",
           borderWidth: 1.5,
-          shadowColor: "black",
+          shadowColor: "#000",
           shadowOffset: {
             width: 0,
-            height: 100,
+            height: 4,
           },
-          shadowOpacity: 100,
-          shadowRadius: 50,
-          elevation: 24,
+          shadowOpacity: 0.32,
+          shadowRadius: 5.46,
+          elevation: 9,
         }}>
         <Text
           style={{

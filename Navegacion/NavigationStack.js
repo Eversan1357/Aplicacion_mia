@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 export default function NavigationStack() {
   return (
      
-    <NavigationContainer >
+    <NavigationContainer>
     <Stack.Navigator
       initialRouteName='pagina_principal'
     >
