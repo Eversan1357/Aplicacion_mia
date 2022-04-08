@@ -17,6 +17,7 @@ const PaginaPrincipal = () => {
           display: "flex",
           justifyContent: "center",
           margin: 15,
+          marginTop: 100
         }}>
         <Image
           style={{

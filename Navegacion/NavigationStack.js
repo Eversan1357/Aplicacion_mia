@@ -12,32 +12,41 @@ const Stack = createStackNavigator();
 
 export default function NavigationStack() {
   return (
-     
+
     <NavigationContainer>
-    <Stack.Navigator
-      initialRouteName='pagina_principal'
-    >
+      <Stack.Navigator
+        initialRouteName='pagina_principal'
+      >
 
 
-        <Stack.Screen 
-           name="pagina_principal" 
-           component={PaginaPrincipal} 
-           options = {{ title: "MI ALIMENTACIÓN MIA" }}
+        <Stack.Screen
+          name="pagina_principal"
+          component={PaginaPrincipal}
+          options={{
+            title: "MI ALIMENTACIÓN MIA",
+            headerShown: false
+          }}
         />
 
-        <Stack.Screen 
-           name="inicio_session" 
-           component={Login} 
-           options = {{ title: "INICIO DE SESIÓN" }}
+        <Stack.Screen
+          name="inicio_session"
+          component={Login}
+          options={{
+            title: "INICIO DE SESIÓN",
+            headerShown: false
+          }}
         />
 
-        <Stack.Screen 
-           name="auth" 
-           component={Autenticacion} 
-           options = {{ title: "Registro Beneficio" }}
+        <Stack.Screen
+          name="auth"
+          component={Autenticacion}
+          options={{
+            title: "Registro Beneficio",
+            headerShown: false
+          }}
         />
 
-    </Stack.Navigator>
+      </Stack.Navigator>
 
     </NavigationContainer>
   )

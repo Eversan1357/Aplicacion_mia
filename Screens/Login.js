@@ -22,7 +22,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-export default function Login() {
+const Login = () => {
+  const [usernameOrEmail, setUsernameOrEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
 
   const navigation = useNavigation();
 
@@ -33,48 +36,27 @@ export default function Login() {
         <Text style={styles.logintext2}>Fundación Mía</Text>
         <Text style={styles.logintext3}>Construyendo Futuro</Text>
 
-        <Formik
-          validateOnMount={true}
-          validationSchema={loginValidationSchema}
-          initialValues={{ email: '', contraseña: '' }}
-          onSubmit={values => console.log(values)}
+        <Text style={styles.inputtext} >Usuario</Text>
+        <TextInput style={styles.email}
+          value={usernameOrEmail}
+          onChangeText={text => setUsernameOrEmail(text)}
+          placeholder="Usuario"
+        />
+
+        <Text style={styles.inputtext} >Contraseña</Text>
+        <TextInput style={styles.contraseña}
+          value={password}
+          onChangeText={text => setPassword(text)}
+          secureTextEntry
+          placeholder="Contraseña"
+        />
+
+        <TouchableOpacity
+          style={styles.boton}
+          onPress={() => navigation.navigate("auth")}
         >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            touched,
-            isValid,
-          }) => (
-            <>
-              <Text style={styles.inputtext} >Usuario</Text>
-              <TextInput style={styles.email}
-                placeholder="Usuario"
-              />
-
-              {(errors.email && touched.email) &&
-                <Text style={styles.errorText}>{errors.email}</Text>
-              }
-              <Text style={styles.inputtext} >Contraseña</Text>
-              <TextInput style={styles.contraseña}
-                placeholder="Contraseña"
-              />
-
-              {(errors.telefono && touched.telefono) &&
-                <Text style={styles.errorText}>{errors.telefono}</Text>
-              }
-
-              <TouchableOpacity
-                style={styles.boton}
-                onPress={() => navigation.navigate("auth")}
-              >
-                <Text style={styles.botontext}>Iniciar Sesion</Text>
-              </TouchableOpacity>
-            </>
-          )}
-        </Formik>
+          <Text style={styles.botontext}>Iniciar Sesion</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -91,6 +73,7 @@ const styles = StyleSheet.create({
   form: {
     backgroundColor: "white",
     margin: 30,
+    marginTop: 100,
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -104,14 +87,14 @@ const styles = StyleSheet.create({
 
   logintext1: {
     color: "black",
-    fontSize:25,
+    fontSize: 25,
     marginTop: 50,
     textAlign: 'center',
   },
 
   logintext2: {
     color: "black",
-    fontSize:20,
+    fontSize: 20,
     marginTop: 30,
     textAlign: 'center',
   },
@@ -119,11 +102,11 @@ const styles = StyleSheet.create({
   logintext3: {
     color: "black",
     marginTop: 10,
-    fontSize:20,
+    fontSize: 20,
     textAlign: 'center',
   },
 
-  inputtext:{
+  inputtext: {
     height: 45,
     color: "black",
     fontSize: 20,
@@ -136,7 +119,7 @@ const styles = StyleSheet.create({
     height: 45,
     color: "black",
     fontSize: 20,
-    marginTop:-20,
+    marginTop: -20,
     marginLeft: 20,
     marginRight: 20,
     paddingLeft: 20,
@@ -149,7 +132,7 @@ const styles = StyleSheet.create({
     height: 45,
     color: "black",
     fontSize: 20,
-    marginTop:-20,
+    marginTop: -20,
     marginLeft: 20,
     marginRight: 20,
     paddingLeft: 20,
@@ -165,8 +148,6 @@ const styles = StyleSheet.create({
     marginTop: 55,
     marginBottom: 20,
     width: 220,
-    borderColor: "#CDD1E2",
-          borderWidth: 1.5,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -193,3 +174,4 @@ const styles = StyleSheet.create({
 
 });
 
+export default Login;
