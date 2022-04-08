@@ -36,7 +36,7 @@ const PaginaPrincipal = () => {
           color: '#1B1E37',
           fontSize: 25
         }}>
-        Fundación MIA</Text>
+        "Fundación MIA"</Text>
       <Text
         style={{
           alignSelf: 'center',
@@ -44,7 +44,7 @@ const PaginaPrincipal = () => {
           color: '#1B1E37',
           fontSize: 25
         }}>
-        Construyendo Futuro</Text>
+        "Construyendo Futuro"</Text>
       <TouchableOpacity
         onPress={() => navigation.navigate("inicio_session")}
         style={{

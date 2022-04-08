@@ -29,9 +29,9 @@ export default function Login() {
   return (
     <View style={styles.body}>
       <View style={styles.form}>
-        <Text style={styles.text}>Bienvenido</Text>
-        <Text style={styles.text}>Fundación Mía</Text>
-        <Text style={styles.text}>Construyendo Futuro</Text>
+        <Text style={styles.logintext1}>Bienvenido</Text>
+        <Text style={styles.logintext2}>Fundación Mía</Text>
+        <Text style={styles.logintext3}>Construyendo Futuro</Text>
 
         <Formik
           validateOnMount={true}
@@ -49,7 +49,7 @@ export default function Login() {
             isValid,
           }) => (
             <>
-              <Text>Usuario</Text>
+              <Text style={styles.inputtext} >Usuario</Text>
               <TextInput style={styles.email}
                 placeholder="Usuario"
               />
@@ -57,7 +57,7 @@ export default function Login() {
               {(errors.email && touched.email) &&
                 <Text style={styles.errorText}>{errors.email}</Text>
               }
-              <Text>Contraseña</Text>
+              <Text style={styles.inputtext} >Contraseña</Text>
               <TextInput style={styles.contraseña}
                 placeholder="Contraseña"
               />
@@ -67,10 +67,10 @@ export default function Login() {
               }
 
               <TouchableOpacity
-                style={styles.colorBtn}
+                style={styles.boton}
                 onPress={() => navigation.navigate("auth")}
               >
-                <Text style={styles.colorTxtBtn}>Iniciar Sesion</Text>
+                <Text style={styles.botontext}>Iniciar Sesion</Text>
               </TouchableOpacity>
             </>
           )}
@@ -102,51 +102,71 @@ const styles = StyleSheet.create({
     elevation: 24,
   },
 
-  text: {
-    color: Colors.black,
-    fontSize: 20,
-    marginTop: 60,
+  logintext1: {
+    color: "black",
+    fontSize:25,
+    marginTop: 50,
     textAlign: 'center',
   },
 
+  logintext2: {
+    color: "black",
+    fontSize:20,
+    marginTop: 30,
+    textAlign: 'center',
+  },
 
-  email: {
-    height: 50,
-    color: Colors.dark,
+  logintext3: {
+    color: "black",
+    marginTop: 10,
+    fontSize:20,
+    textAlign: 'center',
+  },
+
+  inputtext:{
+    height: 45,
+    color: "black",
     fontSize: 20,
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    fontWeight: '600',
+  },
+
+  email: {
+    height: 45,
+    color: "black",
+    fontSize: 20,
+    marginTop:-20,
+    marginLeft: 20,
+    marginRight: 20,
     paddingLeft: 20,
     borderWidth: 1,
-    borderRadius: 7,
-    borderColor: Colors.black,
-    paddingRight: 12,
+    borderRadius: 8,
+    borderColor: "gray",
   },
 
   contraseña: {
-    height: 50,
-    color: Colors.dark,
+    height: 45,
+    color: "black",
     fontSize: 20,
-    marginTop: 20,
+    marginTop:-20,
     marginLeft: 20,
     marginRight: 20,
-    fontWeight: '600',
     paddingLeft: 20,
     borderWidth: 1,
-    borderRadius: 7,
-    borderColor: Colors.black,
-    paddingRight: 12,
+    borderRadius: 8,
+    borderColor: "gray",
   },
 
-  colorBtn: {
+  boton: {
     backgroundColor: '#198754',
     alignSelf: "center",
     borderRadius: 10,
-    marginTop: 30,
+    marginTop: 55,
     marginBottom: 20,
     width: 220,
+    borderColor: "#CDD1E2",
+          borderWidth: 1.5,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -157,7 +177,7 @@ const styles = StyleSheet.create({
     elevation: 11,
   },
 
-  colorTxtBtn: {
+  botontext: {
     color: '#FFFFFF',
     fontSize: 20,
     textAlign: "center",
