@@ -1,59 +1,97 @@
-import React, { useEffect, useState, } from 'react';
-import { StyleSheet, } from 'react-native';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { Formik } from 'formik'
+import React, { useState } from 'react';
+import { StyleSheet, Alert, View, } from 'react-native';
+import { Container, Button, Item, Input, Content, Form, Text } from 'native-base';
+
 import axios from 'axios'
 
-function Login() {
+const Login = () => {
 
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
+  const [usernameOrEmailError, setUsernameOrEmailError] = useState('');
 
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
+  const [message, setMessage] = useState('');
 
+  const signin = async () => {
+    if (usernameOrEmail != "" && password != "") {
+      //alert('Gracias por Iniciar Sesión');
+      await fetch('http://localhost:8080/api/auth', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          'usernameOrEmail': usernameOrEmail,
+          'password': password
+        })
 
-  const required = value => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          ¡Este campo es obligatorio!
-        </div>
-      );
+      }).then(res => res.json())
+        .then(resData => {
+          //alert(resData.message);
+          setMessage(resData.message);
+        })
     }
-  };
+
+    if (usernameOrEmail != "") {
+      alert(usernameOrEmail);
+      setUsernameOrEmailError('');
+
+    } else {
+      setUsernameOrEmailError('El Nombre de Usuario no debe de estar vacío');
+    }
+
+    if (password != "") {
+      alert(password);
+      setPasswordError('');
+
+    } else {
+      setPasswordError('Tu contraseña no debe estar vaía')
+    }
+  }
 
   return (
-    <View style={styles.body}>
+    <Container style={styles.body}>
       <View style={styles.form}>
         <Text style={styles.logintext1}>Bienvenido</Text>
         <Text style={styles.logintext2}>Fundación Mía</Text>
         <Text style={styles.logintext3}>Construyendo Futuro</Text>
-        <Formik>
-          <View>
-            <Text style={styles.inputtext}>Usuario</Text>
-            <TextInput
-              //value={values.usernameOrEmail}
-              //onChangeText={text => setFieldValue('usernameOrEmail', text)}
-              style={styles.email}
+        <Text style={{color:'green'}}>{message}</Text>
+        <Form >
+          <Text style={styles.inputtext}>Usuario</Text>
+          <Item style={styles.email} >
+            <Input
               placeholder="Usuario"
-              validations={[required]}
+              value={usernameOrEmail}
+              onChangeText={(usernameOrEmail) => setUsernameOrEmail(usernameOrEmail)}
+              onChange={() => setUsernameOrEmailError('')}
             />
-            <Text style={styles.inputtext}>Contraseña</Text>
-            <TextInput
-              //value={values.password}
-              //onChangeText={text => setFieldValue('password', text)}
-              style={styles.contraseña}
+          </Item>
+          <Text style={{ color: 'red' }}>{usernameOrEmailError}</Text>
+
+          <Text style={styles.inputtext}>Contraseña</Text>
+          <Item style={styles.contraseña} >
+            <Input
               placeholder="Contraseña"
-              validations={[required]}
-              secureTextEntry
+              value={password}
+              onChangeText={(password) => setPassword(password)}
+              onChange={() => setPasswordError('')}
             />
-            <TouchableOpacity style={styles.boton}>
-              <Text style={styles.botontext}>Iniciar Sesion</Text>
-            </TouchableOpacity>
-          </View>
-        </Formik>
+          </Item>
+          <Text style={{ color: 'red' }}>{passwordError}</Text>
+
+          <Button style={styles.boton} onPress={signin}>
+            <Text style={styles.botontext} >Iniciar Sesion</Text>
+          </Button>
+
+        </Form>
       </View>
-    </View>
-  )
+    </Container>
+  );
 };
+
 
 const styles = StyleSheet.create({
 
@@ -122,7 +160,7 @@ const styles = StyleSheet.create({
   },
 
   contraseña: {
-    height: 45,
+    height: 50,
     color: "black",
     fontSize: 20,
     marginTop: -20,
@@ -137,10 +175,12 @@ const styles = StyleSheet.create({
   boton: {
     backgroundColor: '#198754',
     alignSelf: "center",
+    justifyContent: "center",
     borderRadius: 10,
     marginTop: 55,
     marginBottom: 20,
-    width: 220,
+    width: 240,
+    height: 55,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -155,15 +195,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
     textAlign: "center",
-    padding: 11
   },
-
-  errorText: {
-    fontSize: 14,
-    color: 'red',
-    marginBottom: 20,
-    marginLeft: 20
-  }
 
 });
 

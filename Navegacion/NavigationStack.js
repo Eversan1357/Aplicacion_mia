@@ -1,11 +1,10 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack';
 
-
-
-import Autenticacion from '../Screens/Autenticacion'
 import PaginaPrincipal from '../Screens/PaginaPrincipal'
 import Login from '../Screens/Login'
+import Autenticacion from '../Screens/Autenticacion'
+
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
@@ -17,7 +16,6 @@ export default function NavigationStack() {
       <Stack.Navigator
         initialRouteName='pagina_principal'
       >
-
 
         <Stack.Screen
           name="pagina_principal"
